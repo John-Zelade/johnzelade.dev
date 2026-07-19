@@ -19,11 +19,27 @@ export const api = {
   getBlogPostBySlug: (slug: string): Promise<BlogPost | undefined> =>
     delay(blogPosts.find((p) => p.slug === slug)),
 
-  /** Simulates submitting the contact form to a backend. */
-  submitContactForm: (values: ContactFormValues): Promise<{ success: true }> =>
-    delay(null, 900).then(() => {
-      // eslint-disable-next-line no-console
-      console.info("Contact form submitted:", values);
-      return { success: true as const };
-    }),
+  submitContactForm: async (
+    values: ContactFormValues,
+  ): Promise<{ success: true }> => {
+    const res = await fetch("https://api.web3forms.com/submit", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        access_key: import.meta.env.VITE_WEB3FORMS_KEY,
+        subject: `Portfolio contact from ${values.name}`,
+        from_name: values.name,
+        email: values.email,
+        message: values.message,
+      }),
+    });
+
+    const data = await res.json();
+
+    if (!data.success) {
+      throw new Error(data.message ?? "Failed to send message");
+    }
+
+    return { success: true };
+  },
 };

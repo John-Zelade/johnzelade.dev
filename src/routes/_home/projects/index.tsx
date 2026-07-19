@@ -1,24 +1,32 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { useMemo, useState } from "react";
 import { Link } from "@tanstack/react-router";
-import { FolderKanban } from "lucide-react";
+import {
+  AnimatePresence,
+  motion,
+  useReducedMotion,
+  type Variants,
+} from "motion/react";
 import { useProjects } from "@/hooks/use-projects";
 import { SectionHeading } from "@/components/shared/section-heading";
 import { TechBadge } from "@/components/shared/tech-icon";
 import { QueryState } from "@/components/shared/query-state";
+import { ProjectCarousel } from "@/components/shared/project-carousel";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
+import { projectImages } from "@/lib/project-images";
 import type { ProjectCategory } from "@/types";
+import { container, item } from "#/lib/constants/animation";
+import { CATEGORIES } from "#/lib/constants/projects";
 
 export const Route = createFileRoute("/_home/projects/")({
   component: ProjectsPage,
 });
 
-const CATEGORIES: Array<ProjectCategory | "All"> = ["All", "Web", "Mobile"];
-
 export function ProjectsPage() {
   const { data: projects, isLoading, isError } = useProjects();
   const [category, setCategory] = useState<ProjectCategory | "All">("All");
+  const shouldReduceMotion = useReducedMotion();
 
   const filtered = useMemo(() => {
     if (!projects) return [];
@@ -54,36 +62,54 @@ export function ProjectsPage() {
         isEmpty={filtered.length === 0}
         emptyMessage="No projects in this category yet."
       >
-        <div className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
-          {filtered.map((project) => (
-            <Link
-              key={project.id}
-              to="/projects/$projectId"
-              params={{ projectId: project.id }}
-            >
-              <Card className="h-full transition-colors hover:border-primary/50">
-                <div className="flex aspect-video items-center justify-center rounded-t-xl bg-secondary/60">
-                  <FolderKanban
-                    size={32}
-                    className="text-muted-foreground"
-                    strokeWidth={1.25}
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={category}
+            variants={container}
+            initial={shouldReduceMotion ? "visible" : "hidden"}
+            animate="visible"
+            exit="hidden"
+            className="grid gap-6 sm:grid-cols-2 lg:grid-cols-3"
+          >
+            {filtered.map((project) => (
+              <motion.div
+                key={project.id}
+                variants={item}
+                whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                transition={{ duration: 0.2 }}
+              >
+                <Card className="h-full overflow-hidden transition-colors hover:border-primary/50">
+                  <ProjectCarousel
+                    images={
+                      projectImages[project.imageFolder ?? project.id] ?? []
+                    }
+                    alt={project.title}
                   />
-                </div>
-                <CardHeader>
-                  <CardTitle className="text-base">{project.title}</CardTitle>
-                  <p className="text-sm text-muted-foreground">
-                    {project.summary}
-                  </p>
-                </CardHeader>
-                <CardContent className="flex flex-wrap gap-2 pt-0">
-                  {project.tech.map((tech) => (
-                    <TechBadge key={tech} name={tech} />
-                  ))}
-                </CardContent>
-              </Card>
-            </Link>
-          ))}
-        </div>
+
+                  <Link
+                    to="/projects/$projectId"
+                    params={{ projectId: project.id }}
+                    className="flex flex-col gap-2"
+                  >
+                    <CardHeader className="hover:text-primary">
+                      <CardTitle className="text-base">
+                        {project.title}
+                      </CardTitle>
+                      <p className="text-sm text-muted-foreground">
+                        {project.summary}
+                      </p>
+                    </CardHeader>
+                    <CardContent className="flex flex-wrap gap-2 pt-0">
+                      {project.tech.map((tech) => (
+                        <TechBadge key={tech} name={tech} />
+                      ))}
+                    </CardContent>
+                  </Link>
+                </Card>
+              </motion.div>
+            ))}
+          </motion.div>
+        </AnimatePresence>
       </QueryState>
     </div>
   );

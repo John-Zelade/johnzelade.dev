@@ -1,9 +1,11 @@
 import { Link } from "@tanstack/react-router";
-import { Github, Linkedin, Mail, X } from "lucide-react";
+import { Download, Linkedin, Mail, X } from "lucide-react";
 import { NAV_LINKS } from "@/components/layout/nav-links";
 import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 import { useTheme } from "../providers/theme-provider";
+import resumePdf from "@/components/assets/john-zelade-higo-cv.pdf";
+import { Icons } from "../icons";
 
 interface MobileMenuProps {
   open: boolean;
@@ -65,8 +67,18 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
         </div>
 
         <div className="flex flex-col gap-4 border-t border-border pt-5">
-          <ThemeToggle />
-          <div className="flex items-center gap-4 text-muted-foreground">
+          <div className="flex px-2 justify-between">
+            <a
+              href={resumePdf}
+              download="John_Zelade_Higo_Resume.pdf"
+              className="flex items-center gap-2 rounded-md bg-primary px-4 py-2 text-sm font-medium text-primary-foreground transition hover:opacity-90 md:flex"
+            >
+              <Download size={16} />
+              Resume
+            </a>
+            <ThemeToggle />
+          </div>
+          <div className="flex px-4 items-center gap-4 text-muted-foreground">
             <a
               href="https://linkedin.com/in/johnzeladehigo"
               aria-label="LinkedIn"
@@ -79,7 +91,7 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               aria-label="GitHub"
               className="hover:text-primary"
             >
-              <Github size={18} />
+              <Icons.github className="h-5 w-5" />
             </a>
             <a
               href="mailto:johnzeladehigo@gmail.com"

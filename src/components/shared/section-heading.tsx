@@ -4,7 +4,11 @@ interface SectionHeadingProps {
   description?: string;
 }
 
-export function SectionHeading({ eyebrow, title, description }: SectionHeadingProps) {
+export function SectionHeading({
+  eyebrow,
+  title,
+  description,
+}: SectionHeadingProps) {
   return (
     <div className="mb-10">
       {eyebrow ? (

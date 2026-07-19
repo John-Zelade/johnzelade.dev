@@ -3,13 +3,19 @@ import type { Project } from "@/types";
 export const projects: Project[] = [
   {
     id: "kita",
-    title: "KITA — Savings & Goal Tracking App",
+    title: "KITA - Savings & Goal Tracking App",
     summary:
       "Savings and goal tracking app with breakdowns and progress insights.",
     description:
       "KITA helps users set savings goals, break them down into smaller parts, and track progress with visual insights and reminders.",
     category: "Mobile",
-    tech: ["React", "TypeScript", "Tailwind CSS", "TanStack"],
+    tech: [
+      "React Native",
+      "TypeScript",
+      "Tailwind CSS",
+      "TanStack",
+      "Supabase",
+    ],
     problem:
       "Many people struggle to stay consistent with savings because they lack clear breakdowns and visibility of their progress.",
     solution:
@@ -17,8 +23,8 @@ export const projects: Project[] = [
     features: [
       "Goal creation with breakdowns",
       "Progress tracking & statistics",
+      "Collaborative group savings",
       "Reminders & notifications",
-      "Dark / light mode",
     ],
     thumbnail: "kita",
     sourceUrl: "https://github.com/John-Zelade/KITA",
@@ -44,6 +50,7 @@ export const projects: Project[] = [
       "Team activity feed",
       "Real-time notification",
     ],
+    imageFolder: "SyncTasks",
     thumbnail: "synctasks",
     videoUrl: "https://www.youtube.com/embed/SK3d9vU0XWQ?si=FIjszWBseqRTRrHX",
     sourceUrl: "https://github.com/John-Zelade/synctasks",
@@ -70,6 +77,7 @@ export const projects: Project[] = [
       "Search and filtering",
       "Role-based access control",
     ],
+    imageFolder: "SIS",
     thumbnail: "sis",
     videoUrl: "https://www.youtube.com/embed/g-8HQludxoA?si=abkY7VS8eDcfq9Yx",
     sourceUrl: "https://github.com/John-Zelade/sis",
@@ -95,6 +103,7 @@ export const projects: Project[] = [
       "Document management",
       "Admin dashboard and reporting",
     ],
+    imageFolder: "SRAM",
     thumbnail: "student-registration",
     documentationUrl:
       "/documents/student-registration-and-admission-management.pdf",

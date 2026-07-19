@@ -16,6 +16,7 @@ import git from "@/components/assets/tech/Git.png";
 import github from "@/components/assets/tech/GitHub.png";
 import postman from "@/components/assets/tech/Postman.png";
 import konva from "@/components/assets/tech/konva.png";
+import supabase from "@/components/assets/tech/supabase.png";
 
 export type IconKeys = keyof typeof icons;
 
@@ -56,6 +57,9 @@ const icons = {
   postman: (props: ImgProps) => <img src={postman} alt="postman" {...props} />,
   vscode: (props: ImgProps) => <img src={vscode} alt="vscode" {...props} />,
   konva: (props: ImgProps) => <img src={konva} alt="konva" {...props} />,
+  supabase: (props: ImgProps) => (
+    <img src={supabase} alt="supabase" {...props} />
+  ),
 };
 
 export const Icons: IconsType = icons;

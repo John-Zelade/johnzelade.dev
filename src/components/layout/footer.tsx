@@ -2,7 +2,7 @@ import { Github, Linkedin, Mail } from "lucide-react";
 
 export function Footer() {
   return (
-    <footer className="border-t border-border/60 bg-background">
+    <footer className="border-t flex justify-center border-border/60 bg-background">
       <div className="container flex flex-col items-center gap-6 py-4">
         <div className="flex items-center gap-5">
           <a
@@ -35,8 +35,6 @@ export function Footer() {
         </div>
 
         <div className="container flex flex-col items-center gap-3 text-center">
-          <p className="text-lg font-semibold">Thanks for visiting!</p>
-
           <p className="max-w-md text-sm text-muted-foreground">
             Interested in working together or have a project in mind? Let's
             build something great.

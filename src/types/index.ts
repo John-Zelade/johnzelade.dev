@@ -13,6 +13,7 @@ export interface Project {
   thumbnail: string;
   liveUrl?: string;
   sourceUrl?: string;
+  imageFolder?: string;
   videoUrl?: string;
   documentationUrl?: string;
   featured: boolean;

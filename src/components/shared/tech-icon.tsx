@@ -31,6 +31,7 @@ const TECH_MAP: Record<string, TechMeta> = {
   Git: { icon: Icons.git, color: "", isImage: true },
 
   Konva: { icon: Icons.konva, color: "", isImage: true },
+  Supabase: { icon: Icons.supabase, color: "", isImage: true },
 
   Vite: { icon: Icons.vite, color: "", isImage: true },
   Github: { icon: Icons.github, color: "", isImage: true },
