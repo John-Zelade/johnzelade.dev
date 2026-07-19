@@ -10,6 +10,7 @@ import {
   CheckCircle2,
   ExternalLink,
   FileText,
+  PlayCircle,
   Smartphone,
 } from "lucide-react";
 import { useProject } from "@/hooks/use-projects";
@@ -123,6 +124,27 @@ export function ProjectDetailPage() {
                       className="h-[400px] w-full"
                       allow="autoplay; encrypted-media"
                     />
+                  ) : project.liveUrl ? (
+                    <div className="relative h-[400px] w-full overflow-hidden">
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="h-full w-full"
+                      />
+
+                      <a
+                        href={project.liveUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/40 opacity-0 transition hover:opacity-100"
+                      >
+                        <PlayCircle className="h-10 w-10 text-white" />
+
+                        <span className="text-sm font-medium text-white hover:underline">
+                          Open Demo
+                        </span>
+                      </a>
+                    </div>
                   ) : project.documentationUrl ? (
                     <div className="flex h-[400px] flex-col items-center justify-center gap-4">
                       <FileText className="h-10 w-10 text-muted-foreground" />

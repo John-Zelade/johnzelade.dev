@@ -1,4 +1,5 @@
 import type { Project } from "@/types";
+import diagramEditorThumbnail from "@/components/assets/projects/IDE/IDE-Edit.png";
 
 export const projects: Project[] = [
   {
@@ -51,7 +52,6 @@ export const projects: Project[] = [
       "Real-time notification",
     ],
     imageFolder: "SyncTasks",
-    thumbnail: "synctasks",
     videoUrl: "https://www.youtube.com/embed/SK3d9vU0XWQ?si=FIjszWBseqRTRrHX",
     sourceUrl: "https://github.com/John-Zelade/synctasks",
     featured: true,
@@ -78,7 +78,6 @@ export const projects: Project[] = [
       "Role-based access control",
     ],
     imageFolder: "SIS",
-    thumbnail: "sis",
     videoUrl: "https://www.youtube.com/embed/g-8HQludxoA?si=abkY7VS8eDcfq9Yx",
     sourceUrl: "https://github.com/John-Zelade/sis",
     featured: true,
@@ -104,7 +103,6 @@ export const projects: Project[] = [
       "Admin dashboard and reporting",
     ],
     imageFolder: "SRAM",
-    thumbnail: "student-registration",
     documentationUrl:
       "/documents/student-registration-and-admission-management.pdf",
     sourceUrl:
@@ -132,7 +130,10 @@ export const projects: Project[] = [
       "Interactive floor plan visualization",
       "Responsive canvas rendering",
     ],
-    thumbnail: "diagram-editor",
+    imageFolder: "IDE",
+    liveUrl: "https://interactive-diagram-editor.vercel.app/",
+    thumbnail: diagramEditorThumbnail,
+    sourceUrl: "https://github.com/John-Zelade/interactive-diagram-editor",
     featured: true,
   },
 ];

@@ -10,7 +10,7 @@ export interface Project {
   problem: string;
   solution: string;
   features: string[];
-  thumbnail: string;
+  thumbnail?: string;
   liveUrl?: string;
   sourceUrl?: string;
   imageFolder?: string;
