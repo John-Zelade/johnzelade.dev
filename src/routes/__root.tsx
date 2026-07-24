@@ -13,7 +13,7 @@ export const Route = createRootRoute({
   component: () => (
     <QueryClientProvider client={queryClient}>
       <Toaster richColors position="top-center" />
-      <ThemeProvider defaultTheme="dark" storageKey="vite-ui-theme">
+      <ThemeProvider defaultTheme="light" storageKey="vite-ui-theme">
         <TooltipProvider>
           <div vaul-drawer-wrapper="" className="overflow-x-clip antialiased">
             <RootLayout>
@@ -25,5 +25,9 @@ export const Route = createRootRoute({
     </QueryClientProvider>
   ),
 
-  notFoundComponent: () => <NotFoundPage />,
+  notFoundComponent: () => (
+    <div className="w-full flex justify-center">
+      <NotFoundPage />
+    </div>
+  ),
 });

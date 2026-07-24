@@ -42,7 +42,7 @@ export function Navbar() {
               Resume
             </a>
 
-            <div className="hidden md:block">
+            <div className="flex items-center">
               <ThemeToggle />
             </div>
 

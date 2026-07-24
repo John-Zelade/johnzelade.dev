@@ -1,7 +1,6 @@
 import { Link } from "@tanstack/react-router";
 import { Download, Linkedin, Mail, X } from "lucide-react";
 import { NAV_LINKS } from "@/components/layout/nav-links";
-import { ThemeToggle } from "@/components/layout/theme-toggle";
 import { cn } from "@/lib/utils";
 import { useTheme } from "../providers/theme-provider";
 import resumePdf from "@/components/assets/john-zelade-higo-cv.pdf";
@@ -76,18 +75,17 @@ export function MobileMenu({ open, onClose }: MobileMenuProps) {
               <Download size={16} />
               Resume
             </a>
-            <ThemeToggle />
           </div>
           <div className="flex px-4 items-center gap-4 text-muted-foreground">
             <a
-              href="https://linkedin.com/in/johnzeladehigo"
+              href="https://linkedin.com/in/john-zelade-higo/"
               aria-label="LinkedIn"
               className="hover:text-primary"
             >
               <Linkedin size={18} />
             </a>
             <a
-              href="https://github.com/johnzelade"
+              href="https://github.com/John-Zelade"
               aria-label="GitHub"
               className="hover:text-primary"
             >

@@ -24,10 +24,18 @@ export const experience: ExperienceEntry[] = [
   {
     id: "bsit",
     role: "BSIT - Bachelor of Science in Information Technology",
-    organization: "Polytechnic University of the Philippines - Quezon City Campus",
+    organization:
+      "Polytechnic University of the Philippines - Quezon City Campus",
     period: "Graduated in 2025",
     description: "Focused on software development and system design.",
     tech: [],
     type: "education",
   },
+];
+
+export const ROLES = [
+  "Software Engineer",
+  "Web Developer",
+  "Mobile Developer",
+  "Problem Solver",
 ];

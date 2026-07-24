@@ -9,6 +9,9 @@ import { cn } from "@/lib/utils";
 import { AnimatedCounter } from "#/components/shared/animated-counter";
 import { container, item } from "#/lib/constants/animation";
 import { STATS, TECH_STACK } from "#/lib/constants/home";
+import { useTypewriter } from "#/hooks/use-type-writer";
+import { ROLES } from "#/data/experience";
+import { Typewriter } from "#/components/type-writer";
 
 export const Route = createFileRoute("/_home/")({
   component: HomePage,
@@ -16,6 +19,11 @@ export const Route = createFileRoute("/_home/")({
 
 export function HomePage() {
   const shouldReduceMotion = useReducedMotion();
+  const text = useTypewriter(ROLES);
+
+  if (shouldReduceMotion) {
+    return <span className="text-primary">{ROLES[0]}</span>;
+  }
 
   return (
     <div className="container sm:py-6">
@@ -43,7 +51,7 @@ export function HomePage() {
             variants={item}
             className="mt-3 text-xl font-medium text-muted-foreground"
           >
-            Junior Software Engineer
+            <Typewriter />
           </motion.p>
 
           <motion.p
@@ -68,6 +76,9 @@ export function HomePage() {
 
           <motion.dl
             variants={container}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true, amount: 0.3 }}
             className="mt-12 grid grid-cols-2 gap-6 sm:grid-cols-4"
           >
             {STATS.map((stat, i) => (
@@ -82,7 +93,13 @@ export function HomePage() {
             ))}
           </motion.dl>
 
-          <motion.div variants={item} className="mt-10">
+          <motion.div
+            variants={item}
+            initial="hidden"
+            whileInView="visible"
+            viewport={{ once: true }}
+            className="mt-10"
+          >
             <div className="flex justify-between">
               <p className="mb-3 text-xs font-medium uppercase tracking-wide text-muted-foreground">
                 Tech Stack
@@ -95,7 +112,13 @@ export function HomePage() {
               </Link>
             </div>
 
-            <motion.div variants={container} className="flex flex-wrap gap-4">
+            <motion.div
+              variants={container}
+              initial="hidden"
+              whileInView="visible"
+              viewport={{ once: true }}
+              className="flex flex-wrap gap-4"
+            >
               {TECH_STACK.map((tech) => (
                 <motion.span
                   key={tech}
@@ -114,27 +137,68 @@ export function HomePage() {
           initial={
             shouldReduceMotion ? false : { opacity: 0, scale: 0.92, x: 24 }
           }
-          animate={{ opacity: 1, scale: 1, x: 0 }}
+          whileInView={{ opacity: 1, scale: 1, x: 0 }}
+          viewport={{ once: true, amount: 0.3 }}
           transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1], delay: 0.2 }}
           className="relative flex items-center justify-center overflow-hidden"
         >
-          {/* Decorative shapes */}
-          <div className="absolute left-10 top-10 h-24 w-24 rounded-full bg-[#e1e1f4]" />
-
-          <div className="absolute right-4 bottom-16 h-32 w-32 rounded-3xl bg-[#f4e1eb] rotate-12" />
-
-          <div className="absolute right-10 top-0 h-4 w-4 rounded-full bg-primary" />
-          <div className="absolute bottom-10 left-20 h-3 w-3 rounded-full bg-primary" />
-
-          {/* Main image container */}
-          <div className="relative flex h-100 w-100 items-center justify-center rounded-2xl">
-            <motion.div
-              animate={shouldReduceMotion ? {} : { y: [0, -10, 0] }}
-              transition={{
-                duration: 4,
+          {/* Decorative shapes — staggered in, gentle idle drift */}
+          <motion.div
+            className="absolute left-10 top-10 h-24 w-24 rounded-full bg-secondary"
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.6 }}
+            whileInView={{
+              opacity: 1,
+              scale: 1,
+            }}
+            animate={{
+              y: shouldReduceMotion ? 0 : [0, -12, 0],
+            }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              opacity: { duration: 0.5, delay: 0.4 },
+              scale: { duration: 0.5, delay: 0.4 },
+              y: {
+                duration: 5,
                 repeat: Infinity,
                 ease: "easeInOut",
-              }}
+                delay: 0.9,
+              },
+            }}
+          />
+
+          <motion.div
+            className="absolute right-4 bottom-16 h-32 w-32 rotate-12 rounded-3xl bg-muted"
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.6 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            animate={{ y: shouldReduceMotion ? 0 : [0, 14, 0] }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{
+              opacity: { duration: 0.5, delay: 0.5 },
+              scale: { duration: 0.5, delay: 0.5 },
+              y: { duration: 6, repeat: Infinity, ease: "easeInOut", delay: 1 },
+            }}
+          />
+
+          <motion.div
+            className="absolute right-10 top-0 h-4 w-4 rounded-full bg-primary"
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.6 }}
+          />
+          <motion.div
+            className="absolute bottom-10 left-20 h-3 w-3 rounded-full bg-primary"
+            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0 }}
+            whileInView={{ opacity: 1, scale: 1 }}
+            viewport={{ once: true, amount: 0.3 }}
+            transition={{ duration: 0.4, delay: 0.7 }}
+          />
+
+          {/* Main image container */}
+          <div className="relative flex h-96 w-96 items-center justify-center rounded-2xl">
+            <motion.div
+              animate={shouldReduceMotion ? {} : { y: [0, -10, 0] }}
+              transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
             >
               <img src={devices} alt="Devices" className="drop-shadow-xl" />
             </motion.div>

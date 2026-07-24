@@ -35,7 +35,7 @@ export function Footer() {
         </div>
 
         <div className="container flex flex-col items-center gap-3 text-center">
-          <p className="max-w-md text-sm text-muted-foreground">
+          <p className="max-w-md text-sm text-muted-foreground px-2">
             Interested in working together or have a project in mind? Let's
             build something great.
           </p>

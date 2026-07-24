@@ -75,6 +75,9 @@ export function ProjectsPage() {
               <motion.div
                 key={project.id}
                 variants={item}
+                initial={shouldReduceMotion ? "visible" : "hidden"}
+                whileInView="visible"
+                viewport={{ once: true, amount: 0.3 }}
                 whileHover={shouldReduceMotion ? undefined : { y: -4 }}
                 transition={{ duration: 0.2 }}
               >
