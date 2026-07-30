@@ -31,7 +31,7 @@ export function ProjectCarousel({
       <CarouselContent>
         {images.map((src, i) => (
           <CarouselItem key={src}>
-            <div className="flex items-center justify-center rounded-t-xl bg-secondary/60">
+            <div className="flex aspect-video items-center justify-center overflow-hidden rounded-t-xl bg-secondary/60">
               <img
                 src={src}
                 alt={`${alt} — screenshot ${i + 1}`}

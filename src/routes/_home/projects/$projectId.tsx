@@ -7,11 +7,15 @@ export const Route = createFileRoute("/_home/projects/$projectId")({
 import { Link, useParams } from "@tanstack/react-router";
 import {
   ArrowLeft,
+  ArrowUpRight,
   CheckCircle2,
   ExternalLink,
   FileText,
   PlayCircle,
   Smartphone,
+  SquarePlay,
+  Video,
+  Youtube,
 } from "lucide-react";
 import { useProject } from "@/hooks/use-projects";
 import { QueryState } from "@/components/shared/query-state";
@@ -83,6 +87,16 @@ export function ProjectDetailPage() {
                       <Icons.github width={16} height={16} /> Source Code
                     </a>
                   ) : null}
+                  {project.videoUrl ? (
+                    <a
+                      href={project.videoUrl}
+                      target="_blank"
+                      rel="noreferrer"
+                      className={cn(buttonVariants({ variant: "link" }))}
+                    >
+                      <SquarePlay width={16} height={16} /> Watch Demo
+                    </a>
+                  ) : null}
                 </motion.div>
 
                 <motion.section variants={item} className="mt-10">
@@ -117,47 +131,77 @@ export function ProjectDetailPage() {
                   variants={item}
                   className="h-[400px] w-full overflow-hidden rounded-3xl border border-border"
                 >
-                  {project.videoUrl ? (
+                  {project.videoEmbedUrl ? (
                     <iframe
-                      src={project.videoUrl}
+                      src={project.videoEmbedUrl}
                       title={`${project.title} Demo`}
                       className="h-[400px] w-full"
                       allow="autoplay; encrypted-media"
                     />
                   ) : project.liveUrl ? (
-                    <div className="relative h-[400px] w-full overflow-hidden">
+                    <div className="group relative h-[400px] w-full overflow-hidden rounded-xl bg-muted">
                       <img
                         src={project.thumbnail}
                         alt={project.title}
-                        className="h-full w-full"
+                        className="h-full w-full transition-transform duration-500 group-hover:scale-105"
                       />
 
-                      <a
-                        href={project.liveUrl}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="absolute inset-0 flex flex-col items-center justify-center gap-4 bg-black/40 opacity-0 transition hover:opacity-100"
-                      >
-                        <PlayCircle className="h-10 w-10 text-white" />
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/45 transition-colors duration-300 group-hover:bg-black/60">
+                        <a
+                          href={project.liveUrl}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"
+                        >
+                          <PlayCircle className="h-10 w-10 text-white" />
 
-                        <span className="text-sm font-medium text-white hover:underline">
-                          Open Demo
-                        </span>
-                      </a>
+                          <span className="text-sm font-medium text-white hover:underline">
+                            Open Demo
+                          </span>
+                        </a>{" "}
+                      </div>
                     </div>
                   ) : project.documentationUrl ? (
-                    <div className="flex h-[400px] flex-col items-center justify-center gap-4">
-                      <FileText className="h-10 w-10 text-muted-foreground" />
-                      <p className="text-sm text-muted-foreground">
-                        Documentation available
-                      </p>
+                    <div className="group relative h-[400px] w-full overflow-hidden rounded-xl bg-muted">
+                      <img
+                        src={project.thumbnail}
+                        alt={project.title}
+                        className="h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                      />
+
+                      {/* Dark overlay */}
+                      <div className="absolute inset-0 bg-black/45 transition-colors duration-300 group-hover:bg-black/60" />
+
+                      {/* Documentation CTA */}
                       <a
                         href={project.documentationUrl}
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="text-sm font-medium text-primary hover:underline"
+                        className="absolute inset-0 flex flex-col items-center justify-center p-6 text-center"
                       >
-                        View Documentation
+                        <div className="flex flex-col items-center gap-4">
+                          {/* Icon */}
+                          <div className="flex h-16 w-16 items-center justify-center rounded-2xl bg-white/10 ring-1 ring-white/20 backdrop-blur-md transition-transform duration-300 group-hover:scale-110">
+                            <FileText className="h-8 w-8 text-white" />
+                          </div>
+
+                          {/* Text */}
+                          <div className="space-y-1">
+                            <p className="text-base font-semibold text-white">
+                              Documentation Available
+                            </p>
+
+                            <p className="text-sm text-white/70">
+                              Learn more about this project
+                            </p>
+                          </div>
+
+                          <span className="mt-2 inline-flex items-center gap-2 rounded-lg bg-white px-4 py-2 text-sm font-medium text-black shadow-lg transition-all duration-300 group-hover:bg-white/90 group-hover:gap-3">
+                            View Documentation
+                            <ArrowUpRight className="h-4 w-4" />
+                          </span>
+                        </div>
                       </a>
                     </div>
                   ) : (

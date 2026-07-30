@@ -1,5 +1,7 @@
 import type { Project } from "@/types";
 import diagramEditorThumbnail from "@/components/assets/projects/IDE/IDE-Edit.png";
+import kitaThumbnail from "@/components/assets/projects/KITA/KITA-Home-portrait.png";
+import sramThumbnail from "@/components/assets/projects/SRAM/SRAM.png";
 
 export const projects: Project[] = [
   {
@@ -27,7 +29,11 @@ export const projects: Project[] = [
       "Collaborative group savings",
       "Reminders & notifications",
     ],
-    thumbnail: "kita",
+    imageFolder: "KITA",
+    videoEmbedUrl:
+      "https://www.youtube.com/embed/pp-JiMUJz9Q?si=PbEb2__4ixCOSPmi",
+    videoUrl: "https://youtu.be/pp-JiMUJz9Q?si=flEAfk26qETuVGqd",
+    thumbnail: kitaThumbnail,
     sourceUrl: "https://github.com/John-Zelade/KITA",
     featured: true,
   },
@@ -52,7 +58,9 @@ export const projects: Project[] = [
       "Real-time notification",
     ],
     imageFolder: "SyncTasks",
-    videoUrl: "https://www.youtube.com/embed/SK3d9vU0XWQ?si=FIjszWBseqRTRrHX",
+    videoEmbedUrl:
+      "https://www.youtube.com/embed/SK3d9vU0XWQ?si=FIjszWBseqRTRrHX",
+    videoUrl: "https://youtu.be/SK3d9vU0XWQ?si=pUbFCY6qx0BRLF96",
     sourceUrl: "https://github.com/John-Zelade/synctasks",
     featured: true,
   },
@@ -78,7 +86,9 @@ export const projects: Project[] = [
       "Role-based access control",
     ],
     imageFolder: "SIS",
-    videoUrl: "https://www.youtube.com/embed/g-8HQludxoA?si=abkY7VS8eDcfq9Yx",
+    videoEmbedUrl:
+      "https://www.youtube.com/embed/g-8HQludxoA?si=abkY7VS8eDcfq9Yx",
+    videoUrl: "https://youtu.be/g-8HQludxoA?si=Uj9XYVYencxXDOSA",
     sourceUrl: "https://github.com/John-Zelade/sis",
     featured: true,
   },
@@ -102,6 +112,7 @@ export const projects: Project[] = [
       "Document management",
       "Admin dashboard and reporting",
     ],
+    thumbnail: sramThumbnail,
     imageFolder: "SRAM",
     documentationUrl:
       "/documents/student-registration-and-admission-management.pdf",

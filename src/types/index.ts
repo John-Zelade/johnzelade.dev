@@ -15,6 +15,7 @@ export interface Project {
   sourceUrl?: string;
   imageFolder?: string;
   videoUrl?: string;
+  videoEmbedUrl?: string;
   documentationUrl?: string;
   featured: boolean;
 }
