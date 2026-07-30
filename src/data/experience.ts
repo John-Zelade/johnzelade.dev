@@ -37,5 +37,7 @@ export const ROLES = [
   "Software Engineer",
   "Web Developer",
   "Mobile Developer",
-  "Problem Solver",
+  "Full-Stack Developer",
+  "Front-End Developer",
+  "Back-End Developer",
 ];
